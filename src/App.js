@@ -1,10 +1,10 @@
-import Login from "./Pages/Login";
+import { AppRouter } from "./routes";
 import { GlobalStyles } from "./styles/global";
 
 function App() {
 	return (
 		<>
-			<Login />
+			<AppRouter />
 			<GlobalStyles />
 		</>
 	);
