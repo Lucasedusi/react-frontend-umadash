@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { RiUserAddFill } from "react-icons/ri";
 
 import logoImg from "../../assets/logo.png";
 import { LayoutComponents } from "../../components/LayoutComponents";
@@ -42,6 +43,7 @@ export const Login = () => {
 				</div>
 
 				<div className="text-center">
+					<RiUserAddFill fontSize={17} color="#fff" />
 					<Link to="/register" className="link-password">
 						Criar Conta
 					</Link>

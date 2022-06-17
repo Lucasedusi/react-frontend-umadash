@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LayoutComponents } from "../../components/LayoutComponents";
 import { Link } from "react-router-dom";
+import { RiArrowLeftCircleFill } from "react-icons/ri";
 
 export const Register = () => {
 	const [name, setName] = useState("");
@@ -49,6 +50,8 @@ export const Register = () => {
 				</div>
 
 				<div className="text-center">
+					<RiArrowLeftCircleFill fontSize={17} color="#fff" />
+
 					<Link to="/" className="link-password">
 						Voltar ao Login
 					</Link>

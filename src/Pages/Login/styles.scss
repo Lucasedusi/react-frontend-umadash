@@ -150,11 +150,14 @@
 
 .text-center {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
-	font-size: 16px;
 
 	margin-top: 30px;
+
+	svg {
+		margin: 0 5px;
+	}
 }
 
 .label-password {
@@ -163,10 +166,11 @@
 }
 
 .link-password {
-	color: #ccc;
-	font-size: 16px;
+	color: #eee;
+	font-size: 17px;
 	line-height: 1.5;
 	text-decoration: none;
+	cursor: pointer;
 
 	transition: filter 0.2s;
 
