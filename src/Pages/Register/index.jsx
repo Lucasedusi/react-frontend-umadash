@@ -3,6 +3,8 @@ import { LayoutComponents } from "../../components/LayoutComponents";
 import { Link } from "react-router-dom";
 import { RiArrowLeftCircleFill } from "react-icons/ri";
 
+import logoImg from "../../assets/logo.png";
+
 export const Register = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -12,7 +14,9 @@ export const Register = () => {
 		<LayoutComponents>
 			<form className="login-form">
 				<span className="login-form-title">
-					<span className="login-form-title">Criar Conta</span>
+					<span className="login-form-title">
+						<img src={logoImg} alt="Jovem Programador" />
+					</span>
 				</span>
 
 				<div className="wrap-input">
