@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { LayoutComponents } from "../../components/LayoutComponents";
 import { Link } from "react-router-dom";
-import { RiArrowLeftCircleFill } from "react-icons/ri";
 
+import { api } from "../../services/api";
+
+import { RiArrowLeftCircleFill } from "react-icons/ri";
 import logoImg from "../../assets/logo.png";
 
 export const Register = () => {
@@ -10,9 +12,22 @@ export const Register = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const handleCreateUser = async (e) => {
+		e.preventDefault();
+
+		const data = {
+			name,
+			email,
+			password,
+		};
+
+		const response = await api.post("/create", data);
+		console.log(response.data);
+	};
+
 	return (
 		<LayoutComponents>
-			<form className="login-form">
+			<form onSubmit={handleCreateUser} className="login-form">
 				<span className="login-form-title">
 					<span className="login-form-title">
 						<img src={logoImg} alt="Jovem Programador" />
@@ -50,7 +65,9 @@ export const Register = () => {
 				</div>
 
 				<div className="container-login-form-btn">
-					<button className="login-form-btn">Cadastrar</button>
+					<button type="submit" className="login-form-btn">
+						Cadastrar
+					</button>
 				</div>
 
 				<div className="text-center">
