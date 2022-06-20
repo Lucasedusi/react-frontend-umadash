@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { RiUserAddFill } from "react-icons/ri";
 
+import * as yup from "yup";
+
 import logoImg from "../../assets/logo.png";
 import { LayoutComponents } from "../../components/LayoutComponents";
 

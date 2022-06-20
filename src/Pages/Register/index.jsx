@@ -1,11 +1,18 @@
 import { useState } from "react";
 import { LayoutComponents } from "../../components/LayoutComponents";
 import { Link } from "react-router-dom";
+import * as yup from "yup";
 
 import { api } from "../../services/api";
 
 import { RiArrowLeftCircleFill } from "react-icons/ri";
 import logoImg from "../../assets/logo.png";
+
+const userSchema = yup.object().shape({
+	name: yup.string().required("Nome Obrigatório"),
+	email: yup.string().required("E-mail Obrigatório").email("E-mail Inválido"),
+	password: yup.string().required("Senha Obrigatória").min(6, "Tamanho Mínimo"),
+});
 
 export const Register = () => {
 	const [name, setName] = useState("");
@@ -21,8 +28,14 @@ export const Register = () => {
 			password,
 		};
 
-		const response = await api.post("/create", data);
-		console.log(response.data);
+		const formValid = await userSchema.isValid(data);
+
+		if (formValid) {
+			const response = await api.post("/create", data);
+			console.log(response.data);
+		} else {
+			userSchema.validate(data);
+		}
 	};
 
 	return (
