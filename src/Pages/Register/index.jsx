@@ -2,10 +2,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LayoutComponents } from "../../components/LayoutComponents";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Button } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,9 +15,7 @@ import { api } from "../../services/api";
 import { RiArrowLeftCircleFill } from "react-icons/ri";
 import logoImg from "../../assets/logo.png";
 
-import "./styles.scss";
-
-const customId = "custom-id-yes";
+import "../Register/styles.scss";
 
 const userSchema = yup.object().shape({
 	name: yup.string().required("Nome Obrigatório"),
@@ -33,13 +31,16 @@ export const Register = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	const toast = useToast();
+	const navigate = useNavigate();
+
 	const { register, handleSubmit, formState, reset } = useForm({
 		resolver: yupResolver(userSchema),
 	});
 
 	const { errors } = formState;
 
-	const handleCreateUser = async (e) => {
+	const handleCreateUser = async () => {
 		const data = {
 			name: name,
 			email: email,
@@ -48,8 +49,13 @@ export const Register = () => {
 
 		await api.post("/create", data);
 
-		toast.success("Cadastrado com Sucesso!", {
-			toastId: customId,
+		navigate("/", { replace: true });
+
+		toast({
+			title: "Cadastro realizado com Sucesso.",
+			status: "success",
+			duration: 5000,
+			isClosable: true,
 		});
 
 		reset();
@@ -59,9 +65,7 @@ export const Register = () => {
 		<LayoutComponents>
 			<form onSubmit={handleSubmit(handleCreateUser)} className="login-form">
 				<span className="login-form-title">
-					<span className="login-form-title">
-						<img src={logoImg} alt="Logo UMADEP" />
-					</span>
+					<img src={logoImg} alt="Logo UMADEP" />
 				</span>
 
 				<div className="wrap-input">
@@ -114,10 +118,14 @@ export const Register = () => {
 				)}
 
 				<div className="container-login-form-btn">
-					<button type="submit" className="login-form-btn">
+					<Button
+						type="submit"
+						_hover={{}}
+						className="login-form-btn"
+						isLoading={formState.isSubmitting}
+					>
 						Cadastrar
-					</button>
-					<ToastContainer bodyClassName="toastBody" autoClose={2000} />
+					</Button>
 				</div>
 
 				<div className="text-center">

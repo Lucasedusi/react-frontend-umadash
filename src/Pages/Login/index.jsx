@@ -3,24 +3,37 @@ import { Link, Navigate } from "react-router-dom";
 import { RiUserAddFill } from "react-icons/ri";
 
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import logoImg from "../../assets/logo.png";
 import { LayoutComponents } from "../../components/LayoutComponents";
 
-import "./styles.scss";
+import "../Login/styles.scss";
+
 import { AuthContext } from "../../context/auth";
+import { Button } from "../../components/Button";
+import { useForm } from "react-hook-form";
+
+const loginSchema = yup.object().shape({
+	email: yup.string().required("E-mail Obrigatório").email("E-mail Inválido"),
+	password: yup.string().required("Senha Obrigatória").min(6, "Senha Inválida"),
+});
 
 export const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const { signIn, signed } = useContext(AuthContext);
 
-	const handleSignIn = async (e) => {
-		e.preventDefault();
+	const { register, handleSubmit, formState } = useForm({
+		resolver: yupResolver(loginSchema),
+	});
 
+	const { errors } = formState;
+
+	const handleSignIn = async () => {
 		const data = {
-			email,
-			password,
+			email: email,
+			password: password,
 		};
 
 		await signIn(data);
@@ -31,35 +44,48 @@ export const Login = () => {
 	} else {
 		return (
 			<LayoutComponents>
-				<form onSubmit={handleSignIn} className="login-form">
+				<form onSubmit={handleSubmit(handleSignIn)} className="login-form">
 					<span className="login-form-title">
 						<img src={logoImg} alt="Jovem Programador" />
 					</span>
 
 					<div className="wrap-input">
 						<input
-							className={email !== "" ? "has-value input" : "input"}
-							type="email"
-							value={email}
+							name={email}
 							onChange={(e) => setEmail(e.target.value)}
+							{...register("email")}
+							className={email !== "" ? "has-value input" : "input"}
 						/>
 						<span className="focus-input" data-placeholder="Email"></span>
 					</div>
 
+					{errors.email?.message && (
+						<div className="input-error">
+							<span>{errors.email?.message}</span>
+						</div>
+					)}
+
 					<div className="wrap-input">
 						<input
-							className={password !== "" ? "has-value input" : "input"}
+							name={password}
 							type="password"
-							value={password}
 							onChange={(e) => setPassword(e.target.value)}
+							{...register("password")}
+							className={password !== "" ? "has-value input" : "input"}
 						/>
 						<span className="focus-input" data-placeholder="Senha"></span>
 					</div>
 
+					{errors.password?.message && (
+						<div className="input-error">
+							<span>{errors.password?.message}</span>
+						</div>
+					)}
+
 					<div className="container-login-form-btn">
-						<button type="submit" className="login-form-btn">
+						<Button type="submit" className="login-form-btn">
 							Entrar
-						</button>
+						</Button>
 					</div>
 
 					<div className="text-center">
