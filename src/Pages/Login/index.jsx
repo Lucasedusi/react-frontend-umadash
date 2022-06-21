@@ -51,10 +51,10 @@ export const Login = () => {
 
 					<div className="wrap-input">
 						<input
-							name={email}
-							onChange={(e) => setEmail(e.target.value)}
-							{...register("email")}
+							name="email"
 							className={email !== "" ? "has-value input" : "input"}
+							{...register("email")}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 						<span className="focus-input" data-placeholder="Email"></span>
 					</div>
@@ -67,11 +67,11 @@ export const Login = () => {
 
 					<div className="wrap-input">
 						<input
-							name={password}
+							name="password"
 							type="password"
-							onChange={(e) => setPassword(e.target.value)}
-							{...register("password")}
 							className={password !== "" ? "has-value input" : "input"}
+							{...register("password")}
+							onChange={(e) => setPassword(e.target.value)}
 						/>
 						<span className="focus-input" data-placeholder="Senha"></span>
 					</div>
