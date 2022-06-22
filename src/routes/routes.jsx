@@ -4,19 +4,21 @@ import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { Dashboard } from "../pages/Dashboard";
 import { Peoples } from "../pages/Peoples";
-import { PrivateRoute } from "./private.routes";
+import { Private } from "./private.routes";
 
 export const AppRouter = () => {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/" element={<Login />} />
-				<Route path="/register" element={<Register />} />
+				<Route exact path="/" element={<Login />} />
+				<Route exact path="/register" element={<Register />} />
 
-				<Route element={<PrivateRoute />}>
-					<Route path="/dashboard" element={<Dashboard />} />
-					<Route path="/peoples" element={<Peoples />} />
-				</Route>
+				<Route
+					exact
+					path="/dashboard"
+					element={<Private Component={Dashboard} />}
+				/>
+				<Route exact path="/peoples" element={<Peoples />} />
 			</Routes>
 		</Router>
 	);
