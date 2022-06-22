@@ -3,10 +3,14 @@ import { createContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { api } from "../services/api";
 
+import { useToast } from "@chakra-ui/react";
+
 export const AuthContext = createContext();
 
 export const Authprovider = ({ children }) => {
 	const [user, setUser] = useState(null);
+
+	const toast = useToast();
 
 	useEffect(() => {
 		const loadingStorageData = async () => {
@@ -28,7 +32,12 @@ export const Authprovider = ({ children }) => {
 		});
 
 		if (response.data.error) {
-			alert(response.data.error);
+			toast({
+				title: `${response.data.error}`,
+				status: "success",
+				duration: 5000,
+				isClosable: true,
+			});
 		} else {
 			setUser(response.data.user);
 			api.defaults.headers.common[
