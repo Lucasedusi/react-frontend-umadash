@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import logoImg from "../../assets/logo.png";
 import { LayoutComponents } from "../../components/LayoutComponents";
 
-import "../Login/styles.scss";
+import "./styles.scss";
 
 import { AuthContext } from "../../context/auth";
 import { Button } from "../../components/Button";

@@ -15,7 +15,7 @@ import { api } from "../../services/api";
 import { RiArrowLeftCircleFill } from "react-icons/ri";
 import logoImg from "../../assets/logo.png";
 
-import "../Register/styles.scss";
+import "./styles.scss";
 
 const userSchema = yup.object().shape({
 	name: yup.string().required("Nome Obrigatório"),

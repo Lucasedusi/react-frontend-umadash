@@ -1,5 +1,6 @@
 import { Box, Flex, SimpleGrid } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
+import { SideBar } from "../../components/SideBar";
 
 export const Dashboard = () => {
 	return (
@@ -7,6 +8,8 @@ export const Dashboard = () => {
 			<Header />
 
 			<Flex w="100%" my="10" maxWidth={1250} mx="auto" px="6">
+				<SideBar />
+
 				<SimpleGrid
 					flex="1"
 					gap="4"
