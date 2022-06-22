@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { Login } from "../Pages/Login";
 import { Register } from "../Pages/Register";
-import { Home } from "../Pages/Home";
+import { Dashboard } from "../Pages/Dashboard";
 import { PrivateRoute } from "./private.routes";
 
 export const AppRouter = () => {
@@ -11,8 +11,8 @@ export const AppRouter = () => {
 			<Routes>
 				<Route exact path="/" element={<Login />} />
 				<Route path="/register" element={<Register />} />
-				<Route path="/home" element={<PrivateRoute />}>
-					<Route path="/home" element={<Home />} />
+				<Route path="/dashboard" element={<PrivateRoute />}>
+					<Route path="/dashboard" element={<Dashboard />} />
 				</Route>
 			</Routes>
 		</Router>

@@ -40,7 +40,7 @@ export const Login = () => {
 	};
 
 	if (signed) {
-		return <Navigate to="home" />;
+		return <Navigate to="dashboard" />;
 	} else {
 		return (
 			<LayoutComponents>
