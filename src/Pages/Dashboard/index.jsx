@@ -5,54 +5,96 @@ import { SideBar } from "../../components/SideBar";
 import Chart from "react-apexcharts";
 import { theme } from "../../styles/theme";
 
+const series = [40, 62];
 const options = {
-	chart: {
-		toolbar: {
-			show: false,
+	series: [10, 16],
+	labels: ["Masculino", "Feminino"],
+	colors: ["#001D6E", "#F24C4C"],
+	plotOptions: {
+		pie: {
+			expandOnClick: false,
+			donut: {
+				size: "48px",
+				labels: {
+					show: true,
+					total: {
+						show: true,
+						showAlways: true,
+						fontSize: "16px",
+						color: "#fff",
+					},
+				},
+			},
 		},
+	},
 
-		zoom: {
-			enabled: false,
+	legend: {
+		position: "bottom",
+	},
+
+	responsive: [
+		{
+			breakpoint: 480,
+			options: {
+				chart: {
+					width: "100%",
+				},
+				legend: {
+					position: "bottom",
+				},
+			},
 		},
-		foreColor: theme.colors.gray[500],
-	},
-	grid: {
-		show: false,
-	},
-	dataLabels: {
-		enabled: false,
-	},
-	tooltip: {
-		enabled: false,
-	},
-	xaxis: {
-		type: "datetime",
-		axisBorder: {
-			color: theme.colors.gray[600],
-		},
-		axisTicks: {
-			color: theme.colors.gray[600],
-		},
-		categories: [
-			"2022-05-25T00:00:00.000Z",
-			"2022-04-26T00:00:00.000Z",
-			"2022-03-27T00:00:00.000Z",
-			"2022-02-28T00:00:00.000Z",
-			"2022-01-29T00:00:00.000Z",
-		],
-	},
-	fill: {
-		opacity: 0.3,
-		type: "gradient",
-		gradient: {
-			shade: "dark",
-			opacityFrom: 0.7,
-			opacityTo: 0.3,
-		},
-	},
+	],
 };
 
-const series = [{ name: "series1", data: [31, 43, 65, 19, 50] }];
+const ser = [36, 16, 18, 12, 20, 8];
+const opt = {
+	series: [36, 16, 18, 12, 20, 8],
+	labels: [
+		"Sede",
+		"Vila Record",
+		"Vila Operária",
+		"Sol Nascente",
+		"Betesda",
+		"Canaã",
+	],
+	colors: ["#187498", "#36AE7C", "#F9D923", "#E8630A", "#F190B7", "#573391"],
+	plotOptions: {
+		pie: {
+			expandOnClick: false,
+			donut: {
+				size: "48px",
+				labels: {
+					show: true,
+					total: {
+						show: true,
+						showAlways: true,
+						fontSize: "16px",
+						color: "#fff",
+					},
+				},
+			},
+		},
+	},
+
+	legend: {
+		position: "bottom",
+	},
+
+	responsive: [
+		{
+			breakpoint: 480,
+			options: {
+				chart: {
+					width: "100%",
+				},
+				legend: {
+					position: "bottom",
+				},
+			},
+		},
+	],
+};
 
 export const Dashboard = () => {
 	return (
@@ -69,17 +111,29 @@ export const Dashboard = () => {
 					alignItems="flex-start"
 				>
 					<Box p={["6", "8"]} bg="gray.800" borderRadius={8}>
-						<Text fontSize="lg" mb="4">
-							Usuários Cadastrados
+						<Text textAlign="center" fontSize="17" mb="4">
+							Total de Jovens do Campo
 						</Text>
-						<Chart options={options} series={series} type="area" height={160} />
+						<Chart
+							options={options}
+							series={series}
+							type="donut"
+							width="100%"
+							height={300}
+						/>
 					</Box>
 
 					<Box p={["6", "8"]} bg="gray.800" borderRadius={8}>
-						<Text fontSize="lg" mb="4">
-							Usuários Cadastrados
+						<Text textAlign="center" fontSize="17" mb="4">
+							Jovens Por Congregação
 						</Text>
-						<Chart options={options} series={series} type="area" height={160} />
+						<Chart
+							options={opt}
+							series={ser}
+							type="donut"
+							width="100%"
+							height={300}
+						/>
 					</Box>
 				</SimpleGrid>
 			</Flex>
