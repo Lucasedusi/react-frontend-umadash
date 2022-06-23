@@ -1,15 +1,17 @@
 import { React } from "react";
 import { Flex, Text, Box, Avatar } from "@chakra-ui/react";
 
-export function Profile() {
+export function Profile({ showProfileData }) {
 	return (
 		<Flex align="center">
-			<Box mr="4" textAlign="right">
-				<Text fontWeight="bold">Lucas Eduardo</Text>
-				<Text color="gray.300" fontSize="small">
-					Secretário Umadep
-				</Text>
-			</Box>
+			{showProfileData && (
+				<Box mr="4" textAlign="right">
+					<Text fontWeight="bold">Lucas Eduardo</Text>
+					<Text color="gray.300" fontSize="small">
+						Secretário Umadep
+					</Text>
+				</Box>
+			)}
 
 			<Avatar
 				size="md"

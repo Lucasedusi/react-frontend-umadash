@@ -52,7 +52,7 @@ const options = {
 	},
 };
 
-const series = [{ name: "series1", data: [31, 123, 43, 65, 19, 50] }];
+const series = [{ name: "series1", data: [31, 43, 65, 19, 50] }];
 
 export const Dashboard = () => {
 	return (

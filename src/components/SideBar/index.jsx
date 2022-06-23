@@ -7,12 +7,14 @@ import {
 	DrawerHeader,
 	DrawerOverlay,
 	useBreakpointValue,
+	useDisclosure,
 } from "@chakra-ui/react";
-import { UseSideBarDrawer } from "../../context/SideBarDrawerContext";
+// import { UseSideBarDrawer } from "../../context/SideBarDrawerContext";
 import { SideBarNav } from "./SideBarNav";
 
 export function SideBar() {
-	const { isOpen, onClose } = UseSideBarDrawer();
+	// const { isOpen, onClose } = UseSideBarDrawer();
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	const isDrawerSiderBar = useBreakpointValue({
 		base: true,

@@ -1,6 +1,20 @@
-import { Flex, Icon, IconButton, useBreakpointValue } from "@chakra-ui/react";
+import {
+	Flex,
+	Icon,
+	IconButton,
+	useBreakpointValue,
+	useDisclosure,
+	Drawer,
+	Button,
+	DrawerBody,
+	DrawerCloseButton,
+	DrawerContent,
+	DrawerHeader,
+	DrawerOverlay,
+} from "@chakra-ui/react";
 import { RiMenuLine } from "react-icons/ri";
-// import { UseSideBarDrawer } from "../../contexts/SideBarDrawerContext";
+import { SideBarNav } from "../SideBar/SideBarNav";
+import { UseSideBarDrawer } from "../../context/SideBarDrawerContext";
 
 import { Logo } from "./Logo";
 import { NotificationNav } from "./NotificationNav";
@@ -8,11 +22,16 @@ import { Profile } from "./Profile";
 import { SearchBox } from "./SearchBox";
 
 export function Header() {
-	// const { onOpen } = UseSideBarDrawer();
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	const isWideVersion = useBreakpointValue({
 		base: false,
 		lg: true,
+	});
+
+	const isDrawerSiderBar = useBreakpointValue({
+		base: true,
+		lg: false,
 	});
 
 	return (
@@ -26,15 +45,29 @@ export function Header() {
 			px="6"
 			align="center"
 		>
-			{!isWideVersion && (
-				<IconButton
-					aria-label="Open Navigation"
-					icon={<Icon as={RiMenuLine} />}
-					fontSize="32"
-					variant="unstyled"
-					// onClick={onOpen}
-					mr="2"
-				></IconButton>
+			{isDrawerSiderBar && (
+				<>
+					<IconButton
+						aria-label="Open Navigation"
+						icon={<Icon as={RiMenuLine} />}
+						fontSize="32"
+						variant="unstyled"
+						onClick={onOpen}
+						mr="2"
+					></IconButton>
+					<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+						<DrawerOverlay>
+							<DrawerContent bg="gray.800" p="4">
+								<DrawerCloseButton mt="6" />
+								<DrawerHeader>Navageção</DrawerHeader>
+
+								<DrawerBody>
+									<SideBarNav />
+								</DrawerBody>
+							</DrawerContent>
+						</DrawerOverlay>
+					</Drawer>
+				</>
 			)}
 
 			<Logo />
