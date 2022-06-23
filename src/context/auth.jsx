@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
-import { Navigate } from "react-router-dom";
 import { api } from "../services/api";
 
 import { useToast } from "@chakra-ui/react";
@@ -51,8 +50,6 @@ export const Authprovider = ({ children }) => {
 	const signOut = async () => {
 		localStorage.clear();
 		setUser(null);
-
-		return <Navigate to="/" />;
 	};
 
 	return (

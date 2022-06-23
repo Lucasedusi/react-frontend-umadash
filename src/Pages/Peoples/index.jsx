@@ -5,7 +5,6 @@ import {
 	Heading,
 	Icon,
 	Link,
-	Spinner,
 	Table,
 	Tbody,
 	Td,

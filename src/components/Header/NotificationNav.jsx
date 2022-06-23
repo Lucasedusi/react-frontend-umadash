@@ -1,9 +1,19 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+
 import { HStack, Icon } from "@chakra-ui/react";
 import { ImExit } from "react-icons/im";
+import { AuthContext } from "../../context/auth";
 
 import "../Button/styles.scss";
 
 export function NotificationNav() {
+	const { signOut } = useContext(AuthContext);
+
+	const handleLogout = () => {
+		signOut();
+	};
+
 	return (
 		<HStack
 			spacing={["6", "8"]}
@@ -14,14 +24,17 @@ export function NotificationNav() {
 			borderLeftWidth={1}
 			borderColor="gray.700"
 		>
-			<Icon
-				className="exit-btn"
-				_hover={{}}
-				ml={["3", "5"]}
-				as={ImExit}
-				fontSize="20"
-				cursor="pointer"
-			/>
+			<Link to="/">
+				<Icon
+					onClick={handleLogout}
+					className="exit-btn"
+					_hover={{}}
+					ml={["3", "5"]}
+					as={ImExit}
+					fontSize="20"
+					cursor="pointer"
+				/>
+			</Link>
 		</HStack>
 	);
 }
