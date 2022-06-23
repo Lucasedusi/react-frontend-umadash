@@ -5,7 +5,6 @@ import {
 	useBreakpointValue,
 	useDisclosure,
 	Drawer,
-	Button,
 	DrawerBody,
 	DrawerCloseButton,
 	DrawerContent,
@@ -14,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 import { RiMenuLine } from "react-icons/ri";
 import { SideBarNav } from "../SideBar/SideBarNav";
-import { UseSideBarDrawer } from "../../context/SideBarDrawerContext";
 
 import { Logo } from "./Logo";
 import { NotificationNav } from "./NotificationNav";
@@ -29,11 +27,6 @@ export function Header() {
 		lg: true,
 	});
 
-	const isDrawerSiderBar = useBreakpointValue({
-		base: true,
-		lg: false,
-	});
-
 	return (
 		<Flex
 			as="header"
@@ -45,7 +38,7 @@ export function Header() {
 			px="6"
 			align="center"
 		>
-			{isDrawerSiderBar && (
+			{!isWideVersion && (
 				<>
 					<IconButton
 						aria-label="Open Navigation"
@@ -53,14 +46,13 @@ export function Header() {
 						fontSize="32"
 						variant="unstyled"
 						onClick={onOpen}
-						mr="2"
+						// mr=""
 					></IconButton>
 					<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
 						<DrawerOverlay>
 							<DrawerContent bg="gray.800" p="4">
 								<DrawerCloseButton mt="6" />
-								<DrawerHeader>Navageção</DrawerHeader>
-
+								<DrawerHeader>UmaDash.</DrawerHeader>
 								<DrawerBody>
 									<SideBarNav />
 								</DrawerBody>
@@ -75,8 +67,8 @@ export function Header() {
 			{isWideVersion && <SearchBox />}
 
 			<Flex align="center" ml="auto">
-				<NotificationNav />
 				<Profile showProfileData={isWideVersion} />
+				<NotificationNav />
 			</Flex>
 		</Flex>
 	);

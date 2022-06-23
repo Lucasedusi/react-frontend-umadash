@@ -25,3 +25,11 @@ button {
 		filter: brightness(0.9);
 	}
 }
+
+.exit-btn {
+	transition: all 0.4s;
+
+	&:hover {
+		color: #e461a0;
+	}
+}

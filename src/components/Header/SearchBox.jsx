@@ -10,13 +10,14 @@ export function SearchBox() {
 			as="label"
 			flex="1"
 			py="4"
-			px="8"
-			maxW={400}
+			px="6"
+			maxW="600"
 			alignSelf="center"
 			color="gray.200"
 			position="relative"
 			bg="gray.800"
 			borderRadius="full"
+			// ml="3"
 		>
 			<Input
 				color="gray.50"
