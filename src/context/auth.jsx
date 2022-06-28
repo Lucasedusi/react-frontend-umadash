@@ -33,7 +33,7 @@ export const Authprovider = ({ children }) => {
 		if (response.data.error) {
 			toast({
 				title: `${response.data.error}`,
-				status: "success",
+				status: "error",
 				duration: 5000,
 				isClosable: true,
 			});
