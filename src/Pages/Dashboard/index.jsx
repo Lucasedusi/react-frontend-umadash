@@ -3,7 +3,6 @@ import { Header } from "../../components/Header";
 import { SideBar } from "../../components/SideBar";
 
 import Chart from "react-apexcharts";
-import { theme } from "../../styles/theme";
 
 const series = [40, 62];
 const options = {
