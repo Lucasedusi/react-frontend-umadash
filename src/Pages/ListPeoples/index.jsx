@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
 	Box,
 	Button,
@@ -7,19 +7,18 @@ import {
 	Icon,
 	Link,
 	Table,
-	Spinner,
 	Avatar,
+	Input,
 	Tbody,
 	Td,
 	Text,
-	Th,
-	Thead,
 	Tr,
 	useBreakpointValue,
 } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { SideBar } from "../../components/SideBar";
-import { RiAddLine } from "react-icons/ri";
+import { RiAddLine, RiSearchLine } from "react-icons/ri";
+import { FaRegTrashAlt, FaRegEdit } from "react-icons/fa";
 
 import moment from "moment";
 import "moment/locale/pt-br";
@@ -29,11 +28,12 @@ import { api } from "../../services/api";
 export const ListPeoples = () => {
 	const [loading, setLoading] = useState(true);
 	const [peoples, setPeoples] = useState([]);
+	const searchInputRef = useRef(null);
 
-	const isWideVersion = useBreakpointValue({
-		base: false,
-		lg: true,
-	});
+	// const isWideVersion = useBreakpointValue({
+	// 	base: false,
+	// 	lg: true,
+	// });
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -60,10 +60,30 @@ export const ListPeoples = () => {
 					<SideBar />
 
 					<Box flex="1" borderRadius={8} bg="gray.800" p="8">
-						<Flex mb="8" justify="space-between" align="center">
-							<Heading size="lg" fontWeight="normal">
-								Lista de Jovens UMADEP
-							</Heading>
+						<Flex mb="8" justify="space-between" alignItems="center">
+							<Flex
+								as="label"
+								flex="1"
+								py="1.5"
+								px="2"
+								maxW="400"
+								alignSelf="center"
+								color="gray.200"
+								position="relative"
+								bg="gray.700"
+								borderRadius={5}
+							>
+								<Input
+									color="gray.50"
+									variant="unstyled"
+									px="4"
+									// mr="4"
+									placeholder="Buscar Jovem..."
+									_placeholder={{ color: "gray.400" }}
+									ref={searchInputRef}
+								/>
+								<Icon as={RiSearchLine} cursor="pointer" fontSize="20" />
+							</Flex>
 
 							<Link href="peoples/create">
 								<Button
@@ -85,7 +105,12 @@ export const ListPeoples = () => {
 									{peoples.map((people, index) => {
 										return (
 											<Tr key={index}>
-												<Td pl={2}>
+												<Td
+													pl={2}
+													display="flex"
+													justifyContent="space-between"
+													alignItems="center"
+												>
 													<Box display="flex" alignItems="center">
 														<Avatar name={people.name} size="md" />
 														<Box ml={3}>
@@ -205,6 +230,20 @@ export const ListPeoples = () => {
 																</Text>
 															</Box>
 														</Box>
+													</Box>
+													<Box>
+														<Icon
+															as={FaRegEdit}
+															mr={2}
+															cursor="pointer"
+															fontSize="20"
+														/>
+														<Icon
+															as={FaRegTrashAlt}
+															cursor="pointer"
+															fontSize="20"
+															color="rose.500"
+														/>
 													</Box>
 												</Td>
 											</Tr>
