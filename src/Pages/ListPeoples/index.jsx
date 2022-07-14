@@ -112,7 +112,7 @@ export const ListPeoples = () => {
 													alignItems="center"
 												>
 													<Box display="flex" alignItems="center">
-														{/* <Avatar name={people.name} size="md" /> */}
+														<Avatar name={people.name} size="md" />
 														<Box ml={3}>
 															<Text
 																display="flex"
